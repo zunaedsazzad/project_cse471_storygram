@@ -1,0 +1,77 @@
+.header {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+      url("./IMG_0553\ 2\ copy.jpg");
+    background-size: cover;
+  }
+
+  .nav {
+    width: 100%;
+    height: 100px;
+    /* color: rgb(189, 178, 146); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .logo {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    color: rgb(239, 231, 196);
+    font-style:normal;
+  }
+  .menu a {
+    text-decoration: none;
+    color: rgb(236, 230, 211);
+    padding: 10px 20px;
+    font-size: 20px;
+  }
+  .menu a:hover {
+    text-decoration: underline;
+  }
+
+  .register a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 20%;
+    background: rgb(167, 122, 74);
+  }
+  .register a:hover {
+    background-color: #97551bbe;
+    font-size: 18px;
+  }
+  .h-txt {
+    margin-top: 2%;
+    /* margin-left: 1%; */
+    max-width: 650px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    font-style: bold;
+  }
+  .h-txt span {
+    letter-spacing: 5px;
+  }
+  .h-txt h1 {
+    font-size: 4em;
+  }
+  .h-txt a {
+    text-decoration: none;
+    background: rgb(18, 52, 80);
+    color: white;
+    padding: 10px 20px;
+    letter-spacing: 5px;
+  }
+  #h2 {
+    color: rgb(242, 216, 136);
+    margin-top: 0.05%;
+    
+  }
+  #h3 {
+    margin-bottom: 18%;
+    color: rgb(239, 226, 187);
+  }
