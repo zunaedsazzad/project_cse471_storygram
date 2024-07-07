@@ -2,16 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./home_before.css"
 
-// import { useEffect } from 'react';
-
 const Home = () => {
 
   const navigate = useNavigate()
   const handlesignout = () =>{
     localStorage.clear()
-    navigate('/home_before')
+    navigate('/')
   }
-
 
 
   return (
@@ -27,6 +24,7 @@ const Home = () => {
       </div>
       <div id='buttons'>
       <button onClick={handlesignout}>Sign out</button>
+
 
       </div>
     </nav>

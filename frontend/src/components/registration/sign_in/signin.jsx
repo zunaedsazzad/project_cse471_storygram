@@ -54,7 +54,7 @@ const Signin = () => {
             </form>
             <div id="para">
               <p id="para">
-                Forgot password? Click here
+                Forgot password? <a href='#'>Click here</a>
               </p>
             </div>
             </div>

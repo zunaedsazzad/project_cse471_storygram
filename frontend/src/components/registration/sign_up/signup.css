@@ -4,11 +4,17 @@
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
+.body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.692), rgba(22, 21, 19, 0.705)), url(./book-bindings-bookcase-books-indoors-preview.jpg);
+    background-position: center;
+    background-size: cover;
 
+
+}
 .contains{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.692), rgba(22, 21, 19, 0.705)), url(./book-bindings-bookcase-books-indoors-preview.jpg);
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.692), rgba(22, 21, 19, 0.705)), url(./book-bindings-bookcase-books-indoors-preview.jpg); */
     background-position: center;
     background-size: cover;
     position: relative;
@@ -59,7 +65,6 @@ input{
     border: 0;
     outline: 0;
     padding: 18px 15px;
-
 }
 .field{
     margin-left: 15px;
@@ -93,4 +98,60 @@ button{
     padding-bottom: 5px;
     color: #b3a893;
 }
+.fields {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .select-container {
+    flex: 1; /* Take up remaining space */
+    margin-right: 20px;
+    margin-left: 15px;
+  }
+  .selected-genres-container {
+    flex: 1; /* Take up remaining space */
+  }
 
+
+  .select-container select {
+
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #887869;
+    box-sizing:border-box; 
+    background: #e0d7cf;
+  }
+  .select-genres-container{
+    background: #e0d7cf;
+    margin: 6px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+  }
+   
+  .selected-genres-container ul {
+    list-style-type:none;
+    padding-left: 0;
+    color: #e3ded3;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between ;
+
+
+
+  }
+  .selected-genres-container li {
+    margin-bottom: 5px;
+  }
+  #title{
+    color: #bfa066;
+    font-size: 15px;
+  }
+  
+
+  
+  

@@ -32,6 +32,7 @@ const Initial = () => {
     <div id='buttons'>
     <Link to={'/sign_in'}>
       <button>Sign in</button>
+      
     </Link>
     <Link to={'/register'}>
       <button>Sign up</button>
