@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate()
   const handlesignout = () =>{
     localStorage.clear()
-    navigate('/home_before')
+    navigate('/')
   }
 
 

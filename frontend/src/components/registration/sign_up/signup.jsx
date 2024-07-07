@@ -9,8 +9,28 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [district, setDistrict] = useState('');
+    const [area, setArea] = useState('');
+    const [genre, setGenre] = useState([]);
+    const [selectedGenres, setSelectedGenres] = useState([]);
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
+    const genres = ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Thriller'];
+
+    // const selected = [];
+
+    const handleGenreChange = (event) => {
+      const { options } = event.target;
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].selected) {
+          selected.push(options[i].value);
+        }
+      }
+      console.log(selected)
+      setSelectedGenres(selected);
+    };
+  
+
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -52,6 +72,32 @@ const Signup = () => {
 
                 <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
                 </div>
+
+                <div class="field">
+
+                <input type="text" placeholder="District" value={district} onChange={(e) => setDistrict(e.target.value)} required />
+                </div>
+                <div class="field">
+
+                <input type="text" placeholder="Area" value={area} onChange={(e) => setArea(e.target.value)} required />
+                </div>
+                <div>
+                <select multiple={true} value={selectedGenres} onChange={handleGenreChange}>
+                {genres.map((genre, index) => (
+                  <option key={index} value={genre}>
+                    {genre}
+                  </option>
+                ))}
+                </select>
+                <div>
+                  <h3>Selected Genres:</h3>
+                  <ul>
+                    {selectedGenres.map((genre, index) => (
+                      <li key={index}>{genre}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
 
                 <button type="submit">Sign Up</button>
 
