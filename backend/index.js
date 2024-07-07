@@ -96,7 +96,8 @@ app.post('/otpmatch', async (req, res) => {
 app.post('/changepassword', async (req, res) => {
     try {
         const { email, newpassword } = req.body;
-        const user = await Usersmodel.findOneAndUpdate({ email }, { password: newpassword }, { new: true, upsert: true });
+        const hashedPassword = await bcrypt.hash(newpassword, 10);
+        const user = await Usersmodel.findOneAndUpdate({ email }, { password: hashedPassword }, { new: true, upsert: true });
 
         if (user) {
             return res.json({ newpass: "Done" });

@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import "./signin.css"
@@ -54,7 +55,9 @@ const Signin = () => {
             </form>
             <div id="para">
               <p id="para">
-                Forgot password? <a href='#'>Click here</a>
+              <p>
+                Forget Password?<Link to={'/forget_password'}> Click here</Link>
+              </p>
               </p>
             </div>
             </div>

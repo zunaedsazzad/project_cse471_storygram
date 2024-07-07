@@ -34,6 +34,9 @@ const UsersSchema = new mongoose.Schema({
       genres: {
         type: [String],
         required: true
+      },
+      otpcode:{
+        type: String
       }
     }, {
       timestamps: true
