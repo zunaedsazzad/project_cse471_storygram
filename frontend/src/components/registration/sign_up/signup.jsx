@@ -88,9 +88,10 @@ const Signup = () => {
                     <div class="selected-genres-container">
                       <h4 id='title'>Selected Genres:</h4>
                       <ul>
+
                         {selectedGenres.map((genre, index) => (
                           <li key={index}>{genre}</li>
-                        ))}
+                        ))} 
                       </ul>
                     </div>
                   </div>
