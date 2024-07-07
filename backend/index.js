@@ -55,7 +55,7 @@ app.post("/sign_in", async (req, res) => {
 
 app.post('/register', async (req, res) => {
     try {
-        const { name, email, password, confirmPassword } = req.body;
+        const { name, email, password, confirmPassword , district, area, genres} = req.body;
         if (password !== confirmPassword) {
             return res.status(400).json({ message: "Passwords do not match" });
         }
@@ -66,7 +66,7 @@ app.post('/register', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new Usersmodel({ name, email, password: hashedPassword });
+        const user = new Usersmodel({ name, email, password: hashedPassword, district, area, genres });
         await user.save();
 
         const token = jwt.sign({ email }, secret, { expiresIn: '1h' });
