@@ -16,7 +16,7 @@ const Signup = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const genres = ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Thriller', 'Self-help'];
+    const genres = ['Classics', 'Comics', 'Fiction', 'Fantasy', 'Non-fiction', 'Manga', 'Sci-Fi', 'Thriller', 'Mystery'];
 
     const handleGenreChange = (event) => {
         const temp_list = [...selectedGenres]

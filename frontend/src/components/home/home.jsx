@@ -2,8 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./home_before.css"
 
-// import { useEffect } from 'react';
-
 const Home = () => {
 
   const navigate = useNavigate()
@@ -11,7 +9,6 @@ const Home = () => {
     localStorage.clear()
     navigate('/')
   }
-
 
 
   return (
