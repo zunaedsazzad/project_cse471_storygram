@@ -28,6 +28,7 @@ const Home = () => {
       <div id='buttons'>
       <button onClick={handlesignout}>Sign out</button>
 
+
       </div>
     </nav>
     <section class="h-txt">

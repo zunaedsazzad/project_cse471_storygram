@@ -1,4 +1,3 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -19,6 +18,7 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+  
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     host:"smtp.gmail.com",
@@ -30,32 +30,116 @@ const transporter = nodemailer.createTransport({
 });
 
 const secret = process.env.JWT_SECRET;
-app.post("/sign_in", async (req, res) => {
+
+app.post('/isemailvalid', async (req, res) => {
     try {
-        const { email, password } = req.body;  
-        const user = await Usersmodel.findOne({email});
+        const { email } = req.body;
+        const user = await Usersmodel.findOne({ email });
         if (!user) {
-            console.error("User not found!") 
-            return res.status(400).json({msg: "User not found!"})
+            return res.status(400).json({ message: 'This email is not registered' });
         }
-        const is_password_valid = await bcrypt.compare(password, user.password)
-        if (is_password_valid & user.isVerified) {
-            const _id = user._id
-            const user_token = jwt.sign({ email, _id}, secret, { expiresIn: '1h' });
-            return res.status(200).json({token: user_token})
-    } else {
-        console.error("Incorrect password for email: ", email)
-        return res.status(400).json({msg: "Incorrect Password"})
+        return res.json({ emailexist: 'True', email: email });
+    } catch (err) {
+        console.error('Error during email validation:', err.message);
+        res.status(500).json({ message: 'An error occurred during email validation.', error: err.message });
     }
-}  catch (err) {
-    console.error('Error during sign in:', err);
-    res.status(500).json({ message: 'An error occurred during sign in.', error: err.message });
-}
 });
+
+app.post('/sendcode', async (req, res) => {
+    try {
+        const { email } = req.body;
+        
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const user = await Usersmodel.findOneAndUpdate(
+            { email },
+            { otpcode: otp},
+            { new: true, upsert: true }
+          );
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Email Verification',
+            text: `This is your password recovery OTP for Storygram: ${otp}`,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Error sending email:', error);
+                return res.status(500).json({ message: 'Error sending email' });
+            } else {
+                res.json({ message: 'please check your Email', otp: 'saved' });
+            }
+        });
+    } catch (err) {
+        console.error('Error during password recovery:', err.message);
+        res.status(500).json({ message: 'An error occurred during password recovery.', error: err.message });
+    }
+});
+app.post('/otpmatch', async (req, res) => {
+    try {
+        const { email, otp } = req.body;
+        const user = await Usersmodel.findOne({ email });
+        console.log(user)
+        console.log(otp)
+
+        if(user.otpcode==otp) {
+            return res.json({ verification: 'Done'});
+        } else {
+            return res.json({ message: "Invalid OTP." });
+        }
+    } catch (err) {
+        console.error('Error during password recovery:', err.message);
+        res.status(500).json({ message: 'An error occurred during password recovery.', error: err.message });
+    }
+});
+
+app.post('/changepassword', async (req, res) => {
+    try {
+        const { email, newpassword } = req.body;
+        const user = await Usersmodel.findOneAndUpdate({ email }, { password: newpassword }, { new: true, upsert: true });
+
+        if (user) {
+            return res.json({ newpass: "Done" });
+        } else {
+            return res.status(404).json({ message: "User not found." });
+        }
+    } catch (err) {
+        console.error('Error during password recovery:', err.message);
+        res.status(500).json({ message: 'An error occurred during password recovery.', error: err.message });
+    }
+});
+
+app.post('/sign_in', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await Usersmodel.findOne({ email });
+
+        if (!user) {
+            console.error('User not found for email:', email);
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (isPasswordValid & user.isVerified == true) {
+            const token = jwt.sign({ email, _id: user._id }, secret, { expiresIn: '1h' });
+            return res.status(200).json({ token: token });
+        } else {
+            console.error('Incorrect password for email:', email);
+            return res.status(400).json({ message: "Incorrect password" });
+        }
+    } catch (err) {
+        console.error('Error during sign in:', err.message);
+        res.status(500).json({ message: 'An error occurred during sign in.', error: err.message });
+    }
+});
+
+
 
 app.post('/register', async (req, res) => {
     try {
-        const { name, email, password, confirmPassword , district, area, genres} = req.body;
+        const { name, email, password, confirmPassword, district, area, selectedGenres } = req.body;
+        console.log(selectedGenres)
         if (password !== confirmPassword) {
             return res.status(400).json({ message: "Passwords do not match" });
         }
@@ -66,10 +150,17 @@ app.post('/register', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new Usersmodel({ name, email, password: hashedPassword, district, area, genres });
+        const user = new Usersmodel({
+            name,
+            email,
+            password: hashedPassword,
+            district,
+            area,
+            genres: selectedGenres // Ensure this matches the schema property name
+        });
         await user.save();
 
-        const token = jwt.sign({ email }, secret, { expiresIn: '1h' });
+        const token = jwt.sign({ email, _id: user._id }, secret, { expiresIn: '1h' });
 
         const mailOptions = {
             from: process.env.EMAIL_USER,
