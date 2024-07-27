@@ -8,6 +8,8 @@ import Initial from "./components/home/home_before.jsx"
 import Emailinput from "./components/forget password/email_input.jsx"
 import Newpassword from "./components/forget password/newpassword.jsx"
 import Code from "./components/forget password/codepage.jsx"
+import Addbook from './components/mybooks/addbook/addbook.js';
+import Collections from './components/mybooks/show_my_books/books/books.jsx';
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +21,9 @@ function App() {
         <Route path='/' element={<Initial />} />
         <Route path='/forget_password' element={<Emailinput/>}></Route>
         <Route path ='/code' element={<Code/>}></Route>
-        <Route path='setnewpassword' element={<Newpassword/>}></Route>
+        <Route path='/setnewpassword' element={<Newpassword/>}></Route>
+        <Route path='/addbook' element={<Addbook/>}></Route>
+        <Route path='/myCollections' element={<Collections/>}></Route>
 
 
       </Routes>

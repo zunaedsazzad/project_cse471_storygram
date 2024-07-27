@@ -42,7 +42,7 @@ const UsersSchema = new mongoose.Schema({
       timestamps: true
     });
 
-const Usersmodel = mongoose.model("users", UsersSchema);
+const Usersmodel = mongoose.model("users",UsersSchema);
 module.exports = Usersmodel;
 
 

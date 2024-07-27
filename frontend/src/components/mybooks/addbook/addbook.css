@@ -1,0 +1,64 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .App {
+    background: url('./bg_image_addbook.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  
+  .input-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    border: 2px solid #6f4e37;
+    padding: 20px;
+    background-color: rgba(197, 181, 157, 0.7);
+    font-size: 22px;
+  }
+  
+  .left-page, .right-page {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+  }
+  
+  input[type="text"] {
+    margin: 10px 0;
+    padding: 15px;
+    border: 3px solid #6f4e37;
+    background: transparent;
+    color: #000000;
+    font-size: 22px;
+  }
+  
+  input[type="text"]::placeholder {
+    color: #686866;
+    font-size: 16px;
+  }
+  
+  .add-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #6f4e37;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .add-button:hover {
+    background-color: #5a3e2e;
+  }
+  

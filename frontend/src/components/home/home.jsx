@@ -1,15 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 import "./home_before.css"
 
-const Home = () => {
 
+
+
+const Home = () => {
+  const [books, setBooks] = useState([]);
+  const [error, setError]=useState([]);
   const navigate = useNavigate()
+  
   const handlesignout = () =>{
+    
     localStorage.clear()
     navigate('/')
   }
+  const showMyBooks = async () => {
+    try {
+      const token = localStorage.getItem('user_token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+  
+      const decodedToken = jwtDecode(token);
+      const _id = decodedToken._id;
+  
+      const response = await axios.get(`http://localhost:3500/api/books?_id=${_id}`);
+      console.log(response.data);
+      localStorage.setItem('books', JSON.stringify(response.data));
 
+  
+      
+      navigate('/myCollections');
+      
+    } catch (error) {
+      console.error('There was an error!', error);
+      // Handle error state, perhaps setting it to state
+      setError(error.response?.data?.message || 'An error occurred.');
+    }
+  };
 
   return (
 
@@ -19,8 +50,8 @@ const Home = () => {
       <div class="logo">Storygram</div>
       <div class="menu">
         <a>Home</a>
-        <a>Genres</a>
-        <a>My library</a>
+        <a>Feed</a>
+        <a onClick={showMyBooks}>My library</a>
       </div>
       <div id='buttons'>
       <button onClick={handlesignout}>Sign out</button>
