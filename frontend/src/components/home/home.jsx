@@ -17,6 +17,12 @@ const Home = () => {
     localStorage.clear()
     navigate('/')
   }
+
+  const gotoprofile = () => {
+    navigate('/profile')
+  }
+
+
   const showMyBooks = async () => {
     try {
       const token = localStorage.getItem('user_token');
@@ -55,6 +61,7 @@ const Home = () => {
       </div>
       <div id='buttons'>
       <button onClick={handlesignout}>Sign out</button>
+      <button onClick={gotoprofile}>Profile</button>
 
 
       </div>

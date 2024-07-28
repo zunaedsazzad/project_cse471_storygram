@@ -26,6 +26,6 @@ const FriendsListSchema = new mongoose.Schema({
 });
 
 
-const FriendsListModel = mongoose.model('friends_list', FriendsListSchema);
+const FriendsListModel = mongoose.model('FriendsListModel', FriendsListSchema);
 
 module.exports = FriendsListModel;

@@ -34,6 +34,7 @@ const secret = process.env.JWT_SECRET;
 
 app.use("/books", require("./routes/booksRoutes"));
 
+
 app.post('/isemailvalid', async (req, res) => {
     try {
         const { email } = req.body;
@@ -279,6 +280,7 @@ app.get('/api/books', async (req, res) => {
 
 
 
+app.use("/friends",require("./routes/friendreqRoute"));
 
 
 app.listen(3500, () => {
