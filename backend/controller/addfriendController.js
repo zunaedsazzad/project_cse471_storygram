@@ -62,20 +62,7 @@ const createFriendRequest = asyncHandler(async (req, res) => {
   const showFriends = asyncHandler(async (req, res) => {
     const { my_id } = req.body;
     try {  
-        // const friends1 = await friendlist.find({
-        //     friend_two: my_id,
-        //     is_requested: false
-        //   })
 
-        //   const friends2 = await friendlist.find({
-        //     friend_one: my_id,
-        //     is_requested: false
-        //   })
-
-        // if (friends1){
-        //     const friends = await Usersmodel.find({friends1.friend_two})
-
-        // }
 
         const friends = await friendlist.aggregate([
             {

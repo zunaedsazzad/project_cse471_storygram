@@ -69,7 +69,15 @@ const Myprofile = () => {
 
 
       </div>
-      <Drawer style={{backgroundColor:'rgb(96, 83, 70)'}} title="Friends" onClose={onClose} open={open}>
+      <Drawer style={{backgroundColor:'rgb(96, 83, 70)'}} onClose={onClose} open={open} closeIcon={null}>
+        <div style={{display: 'flex', gap:'10px'}}>
+          <h3>Friends</h3>
+        <button>Requests</button>
+        <button>Requests</button>
+        
+          
+          
+          </div>
         <div className='friends'>
           {friends.map((friend, index) => (
             <FriendCard
