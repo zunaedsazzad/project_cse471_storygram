@@ -57,7 +57,7 @@ const Signup = () => {
                         <form onSubmit={handleSignup}>
                             <div className="input">
                                 <div className="field">
-                                    <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                    <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}  />
                                 </div>
                                 <div className="field">
                                     <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -96,7 +96,7 @@ const Signup = () => {
                     </div>
                   </div>
 
-                                <button type="submit">Sign Up</button>
+                                <button class="button" type="submit">Sign Up</button>
                             </div>
                         </form>
                     )}

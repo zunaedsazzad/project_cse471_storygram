@@ -5,6 +5,7 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const Usersmodel = require('./models/users');
+const Booksmodel =require('./models/books')
 const app = express();
 
 require('dotenv').config();
@@ -30,6 +31,9 @@ const transporter = nodemailer.createTransport({
 });
 
 const secret = process.env.JWT_SECRET;
+
+app.use("/books", require("./routes/booksRoutes"));
+
 
 app.post('/isemailvalid', async (req, res) => {
     try {
@@ -96,7 +100,8 @@ app.post('/otpmatch', async (req, res) => {
 app.post('/changepassword', async (req, res) => {
     try {
         const { email, newpassword } = req.body;
-        const user = await Usersmodel.findOneAndUpdate({ email }, { password: newpassword }, { new: true, upsert: true });
+        const hashedPassword = await bcrypt.hash(newpassword, 10);
+        const user = await Usersmodel.findOneAndUpdate({ email }, { password: hashedPassword }, { new: true, upsert: true });
 
         if (user) {
             return res.json({ newpass: "Done" });
@@ -226,6 +231,56 @@ app.get('/verify/:token', async (req, res) => {
         res.status(500).json({ message: 'Verification failed', error: err.message });
     }
 });
+app.post('/addbook', async (req, res) => {
+    try {
+        const { bookname, authorname, language, bookgenre, user_id } = req.body;
+
+        const newBook = new Booksmodel({
+            user_id: user_id,
+            bookname: bookname,
+            authorname: authorname,
+            language: language,
+            bookgenre: bookgenre
+        });
+
+        await newBook.save();
+        return res.json({ message: "Book added successfully" });
+
+    } catch (err) {
+        console.error('Error during book addition:', err);
+        res.status(500).json({ message: 'An error occurred during book addition.', error: err.message });
+    }
+});
+
+
+app.get('/api/books', async (req, res) => {
+    try {
+        const { _id } = req.query;
+        console.log("Received _id:", _id); 
+        
+        if (!_id) {
+            return res.status(400).json({ error: "_id query parameter is required" });
+        }
+        
+        const books = await Booksmodel.find({user_id: _id.trim()}); 
+        console.log("Fetched books:", books); 
+        
+        if (books.length === 0) {
+            return res.status(404).json({ message: "No books found for the given _id" });
+        }
+        
+        return res.json(books);
+    } catch (err) {
+        console.error("Error fetching books:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+
+
+
+app.use("/friends",require("./routes/friendreqRoute"));
 
 
 app.listen(3500, () => {
