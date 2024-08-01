@@ -10,7 +10,7 @@ import Newpassword from "./components/forget password/newpassword.jsx"
 import Code from "./components/forget password/codepage.jsx"
 import Addbook from './components/mybooks/addbook/addbook.js';
 import Collections from './components/mybooks/show_my_books/books/books.jsx';
-import FriendsList from './components/profile/friends.jsx';
+
 import Myprofile from './components/profile/profile.jsx';
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route path='/addbook' element={<Addbook/>}></Route>
         <Route path='/myCollections' element={<Collections/>}></Route>
         <Route path='/profile' element={<Myprofile/>}></Route>
-        <Route path='/friends' element={<FriendsList/>}></Route>
+        <Route path='/friends' element={<Myprofile/>}></Route>
 
 
       </Routes>
