@@ -157,8 +157,8 @@ const acceptFriendRequest = asyncHandler(async (req, res) => {
   try {
     const acceptedFriendRequest = await friendlist.findOneAndUpdate(
       {
-        friend_two: frnd_id,
-        friend_one: my_id,
+        friend_one: frnd_id,
+        friend_two: my_id,  
         is_requested: true,
       },
       { is_requested: false }, // Set request to accepted
