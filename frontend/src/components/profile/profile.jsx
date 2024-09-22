@@ -28,6 +28,7 @@ const Myprofile = () => {
     <FontAwesomeIcon icon={faUserPlus} />
   );
 
+
   const navigate = useNavigate();
 
   const showDrawer = async () => {
@@ -156,6 +157,10 @@ const Myprofile = () => {
       setF_suggestions([]);
     }
   };
+  const Stories= async ()=> {
+    navigate("/stories");
+    
+  };
   return (
     <body class="header">
       <header>
@@ -163,7 +168,7 @@ const Myprofile = () => {
           <div class="logo">My profile</div>
           <div class="menu">
             <a>Home</a>
-            <a>Feed</a>
+            <a onClick={Stories}>Stories</a>
             <a>My library</a>
           </div>
           <div id="buttons">

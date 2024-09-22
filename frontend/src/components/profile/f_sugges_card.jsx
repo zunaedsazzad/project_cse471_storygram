@@ -40,7 +40,7 @@ const FriendSugCard = ({ friend }) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "space-between", 
           width: "100%",
           alignItems: "center",
         }}
@@ -48,7 +48,7 @@ const FriendSugCard = ({ friend }) => {
         <div>
           <div style={styles.name}>{name}</div>
           <div style={styles.location}>
-            from {area}, {district}
+            <span style={{fontFamily:'cursive', fontSize:'13px'}}>from</span> {area}, {district}
           </div>
         </div>
         <button

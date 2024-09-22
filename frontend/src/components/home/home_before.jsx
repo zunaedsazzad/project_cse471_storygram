@@ -31,11 +31,11 @@ const Initial = () => {
     </div>
     <div id='buttons'>
     <Link to={'/sign_in'}>
-      <button>Sign in</button>
+      <button class='button'>Sign in</button>
       
     </Link>
     <Link to={'/register'}>
-      <button>Sign up</button>
+      <button class='button'>Sign up</button>
     </Link>
     </div>
   </nav>

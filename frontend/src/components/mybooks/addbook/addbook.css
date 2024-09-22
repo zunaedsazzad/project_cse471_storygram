@@ -15,6 +15,12 @@ body, html {
     flex-direction: column;
   }
 
+  .h1{
+    color: #6f4e37;
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
   
   .input-section {
     display: flex;
@@ -25,6 +31,7 @@ body, html {
     padding: 20px;
     background-color: rgba(197, 181, 157, 0.7);
     font-size: 22px;
+    border-radius: 10px;
   }
   
   .left-page, .right-page {
@@ -40,6 +47,7 @@ body, html {
     background: transparent;
     color: #000000;
     font-size: 22px;
+    border-radius: 10px;
   }
   
   input[type="text"]::placeholder {
@@ -61,4 +69,23 @@ body, html {
   .add-button:hover {
     background-color: #5a3e2e;
   }
-  
+ 
+.collections-link {
+  position: absolute;
+  top: 70px;
+  right: 200px;
+  cursor: pointer;
+  color: #6f4e37;
+  font-size: 18px;
+  text-decoration: none;
+  border-bottom: 2px solid #6f4e37;
+}
+.collections-link:hover {
+  color: #5a3e2e;
+  border-bottom: 3px solid #5a3e2e;
+}
+
+.collections-link h1 {
+  margin: 0;
+  font-size: 24px;
+}

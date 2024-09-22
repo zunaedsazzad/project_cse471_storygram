@@ -22,9 +22,10 @@ const FriendReqCard = ({ friend }) => {
         if (
           response.data.isrequested===false
         ) {
-            setAccept('Accepted')
+            
 
         }
+        setAccept('Accepted')
         
 
       } catch (error) {
@@ -48,7 +49,7 @@ const FriendReqCard = ({ friend }) => {
         <div>
           <div style={styles.name}>{name}</div>
           <div style={styles.location}>
-            f {area}, {district}
+          <span style={{fontFamily:'cursive', fontSize:'13px'}}>from</span>{area}, {district}
           </div>
         </div>
         <button
