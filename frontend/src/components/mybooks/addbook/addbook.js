@@ -16,6 +16,8 @@ const Addbook = () => {
 
     const handleAddBook = async () => {
         setLoading(true);
+        setError('');
+        setMessage('');
         try {
             const token = localStorage.getItem('user_token');
             if (!token) throw new Error('No token found');
@@ -32,24 +34,29 @@ const Addbook = () => {
 
             if (response.data.message === "Book added successfully") {
                 setMessage('Book added successfully');
+                setBookname('');
+                setAuthname('');
+                setLanguage('');
+                setGenre('');
                 navigate('/addbook');
-                setBookname('')
-                setAuthname('')
-                setLanguage('')
-                setGenre('')
             }
-
         } catch (error) {
             console.error('There was an error!', error);
             setError(error.response?.data?.message || 'An error occurred during addbook.');
-            setMessage('');
         } finally {
             setLoading(false);
         }
     };
 
+    const myCollections = () => {
+        navigate('/myCollections');
+    };
+
     return (
         <div className="App">
+            <div className="collections-link" onClick={myCollections}>
+                <h1>Collections</h1>
+            </div>
             <h1 className="h1">Add a new book</h1>
             <div className="input-section">
                 <div className="left-page">

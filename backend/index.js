@@ -281,6 +281,7 @@ app.get('/api/books', async (req, res) => {
 
 
 app.use("/friends",require("./routes/friendreqRoute"));
+app.use("/reviews", require("./routes/bookreviewroutes"));
 
 
 app.listen(3500, () => {

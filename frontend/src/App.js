@@ -10,8 +10,11 @@ import Newpassword from "./components/forget password/newpassword.jsx"
 import Code from "./components/forget password/codepage.jsx"
 import Addbook from './components/mybooks/addbook/addbook.js';
 import Collections from './components/mybooks/show_my_books/books/books.jsx';
-
+import ImagePromptApp from './components/own_story/fetch_story/story.jsx';
 import Myprofile from './components/profile/profile.jsx';
+import PostReview from './components/review/postReview.jsx';
+import ReviewsPage from './components/review/getReviews.jsx';
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +31,9 @@ function App() {
         <Route path='/myCollections' element={<Collections/>}></Route>
         <Route path='/profile' element={<Myprofile/>}></Route>
         <Route path='/friends' element={<Myprofile/>}></Route>
-
+        <Route path='/create_story' element={<ImagePromptApp/>}></Route>
+        <Route path='/give_review' element={<PostReview/>}></Route>
+        <Route path='/show_reviews' element={<ReviewsPage/>}></Route>
 
       </Routes>
     </BrowserRouter>
